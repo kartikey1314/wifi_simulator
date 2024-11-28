@@ -112,7 +112,7 @@ public:
                 totalDataTransmitted += packet.size;
                 progress = true;
             }
-            if (!progress) {
+            if (!progress){
                 break;
             }
             currentTime = max(currentTime, channelBusyUntil);
@@ -124,8 +124,8 @@ public:
     }
     double calculateAverageLatency() const{
         double sum = accumulate(latencies.begin(), latencies.end(), 0.0);
-        if (latencies.empty()) {
-            return 0.0;
+        if (latencies.empty()){
+            return 0;
         } else {
             return sum / latencies.size();
         }
@@ -133,7 +133,7 @@ public:
 
     double calculateMaximumLatency() const{
         if (latencies.empty()) {
-            return 0.0;
+            return 0;
         } else {
             double maxLatency = *std::max_element(latencies.begin(), latencies.end());
         return maxLatency;
@@ -145,7 +145,7 @@ public:
     }
 };
 
-int main() {
+int main(){
     cout << "Test Case:10 Users, 50 Packets Each\n";
     WiFi4Simulator simulator(10, 50);
     simulator.simulate(1000);
@@ -154,7 +154,7 @@ int main() {
     cout << "Maximum Latency:" << simulator.calculateMaximumLatency() << " ms\n";
     cout << "Channel Busy Count:" << simulator.getChannelBusyCount() << "\n";
     cout << "--------------------\n";
-    cout << "Test Case: 1 User, 500 Packets Each\n";
+    cout << "Test Case:1 User, 500 Packets Each\n";
     WiFi4Simulator simulator2(1, 500);
     simulator2.simulate(1000); 
     cout << "Throughput: " << simulator2.calculateThroughput() << " Mbps\n";
@@ -162,7 +162,7 @@ int main() {
     cout << "Maximum Latency: " << simulator2.calculateMaximumLatency() << " ms\n";
     cout << "Channel Busy Count: " << simulator2.getChannelBusyCount() << "\n";
     cout << "--------------------\n";
-    cout << "Test Case: 100 Users, 20 Packets Each\n";
+    cout << "Test Case:100 Users, 20 Packets Each\n";
     WiFi4Simulator simulator3(100, 20);
     simulator3.simulate(1000); 
     cout << "Throughput: " << simulator3.calculateThroughput() << " Mbps\n";
@@ -170,11 +170,10 @@ int main() {
     cout << "Maximum Latency: " << simulator3.calculateMaximumLatency() << " ms\n";
     cout << "Channel Busy Count: " << simulator3.getChannelBusyCount() << "\n";
     cout << "--------------------\n";
-    cout << "Test Case: Invalid Input (No Users)\n";
+    cout << "Test Case:Invalid Input (No Users)\n";
     WiFi4Simulator invalidSimulator(0, 50); 
     invalidSimulator.simulate(1000);
-    cout << "Test Case: Invalid Input (No Packets)\n";
+    cout << "Test Case:Invalid Input (No Packets)\n";
     WiFi4Simulator invalidSimulator2(10, 0);
     invalidSimulator2.simulate(1000);
-
 }
