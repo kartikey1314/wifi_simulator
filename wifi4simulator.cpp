@@ -18,3 +18,36 @@ double getRandomBackoffTime() {
     return dis(gen);
 }
 // Packet 
+class Packet {
+public:
+    int size;
+    double latency;
+    Packet(int size) {
+        this->size = size;
+        this->latency = 0;
+    }
+};
+
+// User class
+class User {
+public:
+    int id;
+    queue<Packet> packet_Queue;
+    double backoffTimeRemaining; // Time the user must wait before retrying
+
+    User(int id) {
+        this->id = id;
+        this->backoffTimeRemaining = 0;
+    }
+    bool hasPackets() const{
+        return packet_Queue.size()!=0;
+    }
+    void enqueuePacket(Packet p){
+        packet_Queue.push(p);
+    }
+    Packet dequeuePacket(){
+        Packet p = packet_Queue.front();
+        packet_Queue.pop();
+        return p;
+    }
+};
