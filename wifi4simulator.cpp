@@ -10,4 +10,11 @@ const double DATA_RATE = BANDWIDTH * MODULATION * CODING_RATE; // Effective data
 const double TRANSMISSION_TIME = (PACKET_SIZE * 8) / DATA_RATE * 1000; // Time to transmit 1 packet in ms
 const double MAX_BACKOFF_TIME = 10.0; // Max backoff time in ms
 
-
+// Random number generator for backoff time
+double getRandomBackoffTime() {
+    static random_device rd;
+    static mt19937 gen(rd());
+    static uniform_real_distribution<> dis(0, MAX_BACKOFF_TIME);
+    return dis(gen);
+}
+// Packet 
