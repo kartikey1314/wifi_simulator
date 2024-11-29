@@ -8,7 +8,9 @@ This project simulates Wi-Fi communication using various Wi-Fi standards: WiFi 4
 
 Key Features
 WiFi 4 Simulation: Simulates a shared channel where users attempt to transmit data packets, using backoff strategies to handle contention.
+
 WiFi 5 Simulation: Implements Multi-User MIMO (MU-MIMO) where users first send Channel State Information (CSI) and then transmit data packets in parallel for a fixed duration.
+
 WiFi 6 Simulation: Simulates Orthogonal Frequency-Division Multiple Access (OFDMA), where the 20 MHz channel is divided into smaller sub-channels of size 2 MHz, 4 MHz, or 10 MHz, and users transmit in parallel using round-robin scheduling.
 The main performance metrics that are calculated include:
 
