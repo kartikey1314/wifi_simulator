@@ -7,6 +7,9 @@ CXXFLAGS := -Wall -Wextra -std=c++17
 # Source Files
 SRC_FILES := wifi4simulator.cpp wifi5simulator.cpp wifi6simulator.cpp
 
+# Object Files
+OBJ_FILES := $(SRC_FILES:.cpp=.o)
+
 # Output Executables
 TARGETS := wifi4simulator wifi5simulator wifi6simulator
 
@@ -14,14 +17,18 @@ TARGETS := wifi4simulator wifi5simulator wifi6simulator
 all: $(TARGETS)
 
 # Build Targets
-wifi4simulator: wifi4simulator.cpp
-	$(CXX) $(CXXFLAGS) -o wifi4simulator wifi4simulator.cpp
+wifi4simulator: wifi4simulator.o
+	$(CXX) $(CXXFLAGS) -o wifi4simulator wifi4simulator.o
 
-wifi5simulator: wifi5simulator.cpp
-	$(CXX) $(CXXFLAGS) -o wifi5simulator wifi5simulator.cpp
+wifi5simulator: wifi5simulator.o
+	$(CXX) $(CXXFLAGS) -o wifi5simulator wifi5simulator.o
 
-wifi6simulator: wifi6simulator.cpp
-	$(CXX) $(CXXFLAGS) -o wifi6simulator wifi6simulator.cpp
+wifi6simulator: wifi6simulator.o
+	$(CXX) $(CXXFLAGS) -o wifi6simulator wifi6simulator.o
+
+# Compilation Rule for .o files
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Test Target
 test: all
@@ -34,7 +41,7 @@ test: all
 
 # Clean Target
 clean:
-	rm -f $(TARGETS)
+	rm -f $(TARGETS) $(OBJ_FILES)
 
 # Run Specific Simulation
 run_wifi4:
