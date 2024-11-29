@@ -38,7 +38,7 @@ public:
     }
 };
 
-class WiFi6Simulator{
+class WiFi_6_Simulator{
 private:
     vector<User> users;
     double totalDataTransmitted;
@@ -46,7 +46,7 @@ private:
     vector<double> latencies;
 
 public:
-    WiFi6Simulator(int numUsers, int numPacketsPerUser)
+    WiFi_6_Simulator(int numUsers, int numPacketsPerUser)
         : totalDataTransmitted(0), totalSimulationTime(0){
         if (numUsers <= 0 || numPacketsPerUser <= 0) {
             throw invalid_argument("Number of users and packets must be greater than zero.");
@@ -116,29 +116,4 @@ public:
     }
 };
 
-int main(){
-    try {
-        cout << "Test Case: 1 User, 100 Packets Each\n";
-        WiFi6Simulator simulator1(1, 100);
-        simulator1.simulate(1000);
-        cout << "Throughput: " << simulator1.calculateThroughput() << " Mbps\n";
-        cout << "Average Latency: " << simulator1.calculateAverageLatency() << " ms\n";
-        cout << "Maximum Latency: " << simulator1.calculateMaximumLatency() << " ms\n";
-        cout << "--------------------------------------\n";
-        cout << "Test Case: 10 Users, 50 Packets Each\n";
-        WiFi6Simulator simulator2(10, 50);
-        simulator2.simulate(1000);
-        cout << "Throughput: " << simulator2.calculateThroughput() << " Mbps\n";
-        cout << "Average Latency: " << simulator2.calculateAverageLatency() << " ms\n";
-        cout << "Maximum Latency: " << simulator2.calculateMaximumLatency() << " ms\n";
-        cout << "--------------------------------------\n";
-        cout << "Test Case: 100 Users, 20 Packets Each\n";
-        WiFi6Simulator simulator3(100, 20);
-        simulator3.simulate(1000); 
-        cout << "Throughput: " << simulator3.calculateThroughput() << " Mbps\n";
-        cout << "Average Latency: " << simulator3.calculateAverageLatency() << " ms\n";
-        cout << "Maximum Latency: " << simulator3.calculateMaximumLatency() << " ms\n";
-    } catch (const invalid_argument& e) {
-        cout << "Error: " << e.what() << endl;
-    }
-}
+
