@@ -104,3 +104,54 @@ public:
         return latencies.empty() ? 0 : *max_element(latencies.begin(), latencies.end());
     }
 };
+
+// Main function
+int main(){
+    try{
+        cout << "Test Case: 1 user, 100 Packets Each\n";
+        WiFi_5_Simulator simulator1(1, 100);
+        simulator1.simulate(1000);
+        cout << "Throughput: " << simulator1.throughput() << " Mbps\n";
+        cout << "Average Latency: " << simulator1.averagelatency() << " ms\n";
+        cout << "Maximum Latency: " << simulator1.maximumlatency() << " ms\n";
+        cout << "-----------\n";
+
+        cout << "Test Case: 10 Users, 50 Packets Each\n";
+        WiFi_5_Simulator simulator2(10, 50);
+        simulator2.simulate(1000);
+        cout << "Throughput: " << simulator2.throughput() << " Mbps\n";
+        cout << "Average Latency: " << simulator2.averagelatency() << " ms\n";
+        cout << "Maximum Latency: " << simulator2.maximumlatency() << " ms\n";
+        cout << "-----------\n";
+
+        cout << "Test Case: 100 Users, 20 Packets Each\n";
+        WiFi_5_Simulator simulator3(100, 20);
+        simulator3.simulate(1000);
+        cout << "Throughput: " << simulator3.throughput() << " Mbps\n";
+        cout << "Average Latency: " << simulator3.averagelatency() << " ms\n";
+        cout << "Maximum Latency: " << simulator3.maximumlatency() << " ms\n";
+        cout << "------------\n";
+
+        cout << "Test Case: Zero Users\n";
+        WiFi_5_Simulator simulatorInvalid1(0, 50); 
+        simulatorInvalid1.simulate(1000);
+
+        cout << "Test Case: Zero Packets\n";
+        WiFi_5_Simulator simulatorInvalid2(10, 0);
+        simulatorInvalid2.simulate(1000);
+
+        cout << "Test Case: Negative Users\n";
+        WiFi_5_Simulator simulatorInvalid3(-10, 50); 
+        simulatorInvalid3.simulate(1000);
+
+        cout << "Test Case: Negative Packets\n";
+        WiFi_5_Simulator simulatorInvalid4(10, -50);
+        simulatorInvalid4.simulate(1000);
+    }
+    catch (const invalid_argument& e){
+        cout << "Error: " << e.what() << endl;
+    }
+    catch (const exception& e){
+        cout << "An error occurred: " << e.what() << endl;
+    }
+}
